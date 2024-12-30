@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
+import "package:onlineshop/components/my_category_tile.dart";
 import "package:onlineshop/components/my_drawer.dart";
 import "package:onlineshop/components/my_product_tile.dart";
+import "package:onlineshop/models/catagory.dart";
 // import "package:onlineshop/models/product.dart";
 import "package:provider/provider.dart";
 import 'package:onlineshop/models/shop.dart';
@@ -13,10 +15,16 @@ class ShopPage extends StatelessWidget {
     // access products in shop
 
     final products = context.watch<Shop>().shop;
+    final selectedCategory = context.watch<CategoryProvider>().selectedCategory;
+    final filteredProducts = selectedCategory == "All"
+        ? products
+        : products
+            .where((product) => product.category == selectedCategory)
+            .toList();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Shop page"),
+        title: Text("Products"),
         backgroundColor: Colors.transparent,
         elevation: 0,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -32,6 +40,11 @@ class ShopPage extends StatelessWidget {
       body: ListView(
         children: [
           const SizedBox(height: 25),
+
+          // Category slider
+          const CategorySlider(),
+
+          const SizedBox(height: 25),
           // shop subtitle
           Center(
             child: Text(
@@ -46,10 +59,10 @@ class ShopPage extends StatelessWidget {
             height: 550,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: products.length,
+                itemCount: filteredProducts.length,
                 itemBuilder: (context, index) {
                   // get individual product from shop
-                  final product = products[index];
+                  final product = filteredProducts[index];
 
                   // return as a product tile
                   return MyProductTile(product: product);

@@ -9,24 +9,28 @@ class Shop extends ChangeNotifier {
       price: 99.9,
       description: "Item description..",
       imagePath: "",
+      category: "Shoes",
     ),
     Product(
       name: "product 2",
       price: 79.9,
       description: "Item description..",
       imagePath: "",
+      category: "Clothes",
     ),
     Product(
       name: "product 3",
       price: 99.9,
       description: "Item description..",
-      imagePath: "",
+      imagePath: "Electronics",
+      category: "Clothes",
     ),
     Product(
       name: "product 4",
       price: 29.9,
       description: "Item description..",
       imagePath: "",
+      category: "Electronics",
     ),
   ];
   // user cart

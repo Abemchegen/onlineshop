@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onlineshop/models/catagory.dart';
 import 'package:onlineshop/pages/cart_page.dart';
 import 'package:onlineshop/pages/intro_page.dart';
 import 'package:onlineshop/pages/shop_page.dart';
@@ -7,8 +8,11 @@ import 'package:provider/provider.dart';
 import 'package:onlineshop/models/shop.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => Shop(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => Shop()),
+      ChangeNotifierProvider(create: (context) => CategoryProvider()),
+    ],
     child: const MyApp(),
   ));
 }

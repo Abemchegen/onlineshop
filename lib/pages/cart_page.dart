@@ -56,7 +56,7 @@ class CartPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           foregroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text("Cart Page"),
+          title: const Text("Your Cart"),
         ),
         drawer: const MyDrawer(),
         backgroundColor: Theme.of(context).colorScheme.surface,
