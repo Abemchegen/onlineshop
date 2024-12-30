@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:onlineshop/models/catagory.dart';
 
 class CategorySlider extends StatelessWidget {
-  const CategorySlider({Key? key}) : super(key: key);
+  const CategorySlider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +51,8 @@ class CategoryTile extends StatelessWidget {
     required this.category,
     required this.isSelected,
     required this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
