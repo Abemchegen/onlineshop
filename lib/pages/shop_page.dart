@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:onlineshop/components/my_category_tile.dart";
+import "package:onlineshop/components/my_catagory_slider.dart";
 import "package:onlineshop/components/my_drawer.dart";
 import "package:onlineshop/components/my_product_tile.dart";
 import "package:onlineshop/models/catagory.dart";
