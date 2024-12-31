@@ -41,10 +41,65 @@ class IntroPage extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              // button
+              // sign in input field
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Enter your email",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    filled: true,
+                    fillColor: Theme.of(context).colorScheme.background,
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              // Sign-up input field (password)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: "Enter your password",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    filled: true,
+                    fillColor: Theme.of(context).colorScheme.background,
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              // Sign-in button
               MyButton(
-                  onTap: () => Navigator.pushNamed(context, '/shop_page'),
-                  child: const Icon(Icons.arrow_forward))
+                onTap: () => Navigator.pushNamed(context, '/shop_page'),
+                child: const Text("Sign In"),
+              ),
+
+              const SizedBox(height: 25),
+
+              // sign up prompt
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have an account?"),
+                  TextButton(
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/signup_page'),
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ));
