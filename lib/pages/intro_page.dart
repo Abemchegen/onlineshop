@@ -1,11 +1,14 @@
 import "package:flutter/material.dart";
 import "package:onlineshop/components/my_button.dart";
+import 'package:onlineshop/components/custom_input_field.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: Center(
@@ -41,39 +44,23 @@ class IntroPage extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              // sign in input field
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Enter your email",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Theme.of(context).colorScheme.surface,
-                  ),
-                ),
+              // Email input field
+              CustomInputField(
+                hintText: "Enter your email",
+                isPasswordField: false,
+                controller: emailController,
               ),
 
               const SizedBox(height: 15),
 
-              // Sign-up input field (password)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    hintText: "Enter your password",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Theme.of(context).colorScheme.surface,
-                  ),
-                ),
+              // Password input field
+              CustomInputField(
+                hintText: "Enter your password",
+                isPasswordField: true,
+                controller: passwordController,
               ),
+
+              const SizedBox(height: 15),
 
               const SizedBox(height: 15),
 

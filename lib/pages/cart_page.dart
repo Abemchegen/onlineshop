@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlineshop/components/my_button.dart';
 import 'package:onlineshop/components/my_drawer.dart';
+import 'package:onlineshop/components/reciept_dialog.dart';
 import 'package:onlineshop/models/product.dart';
 import 'package:onlineshop/models/shop.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,7 @@ class CartPage extends StatelessWidget {
               Navigator.pop(context);
 
               //add to cart
-              context.read<Shop>().addToCart(product);
+              context.read<Shop>().removeFromCart(product);
             },
             child: Text("Confirm"),
           ),
@@ -37,12 +38,48 @@ class CartPage extends StatelessWidget {
     );
   }
 
-  // pressed pay button
+  // Pressed pay button
   void payButtonPressed(BuildContext context) {
+    final cart = context.read<Shop>().cart;
+
+    double totalAmount = 0.0;
+    for (var item in cart) {
+      totalAmount += item.price;
+    }
+
+    // Show the receipt dialog
     showDialog(
       context: context,
-      builder: (context) => const AlertDialog(
-        content: Text("Payment Succesful"),
+      builder: (context) => ReceiptDialog(
+        cart: cart,
+        totalAmount: totalAmount,
+        onCancel: () {
+          Navigator.pop(context);
+        },
+        onProceed: () {
+          context.read<Shop>().clearCart();
+          Navigator.pop(context);
+
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text("Thank You!"),
+              content: const Text("Thank you for shopping with AASTU Shop!"),
+              actions: [
+                TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor:
+                        Theme.of(context).colorScheme.inversePrimary,
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/shop_page');
+                  },
+                  child: const Text("Go to Shop"),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -85,12 +122,13 @@ class CartPage extends StatelessWidget {
             ),
 
             // pay button
-            Padding(
-              padding: const EdgeInsets.all(50.0),
-              child: MyButton(
-                  onTap: () => payButtonPressed(context),
-                  child: Text("Pay Now")),
-            )
+            if (cart.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: MyButton(
+                    onTap: () => payButtonPressed(context),
+                    child: Text("Pay Now")),
+              ),
           ],
         ));
   }

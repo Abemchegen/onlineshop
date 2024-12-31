@@ -10,34 +10,35 @@ class MyDrawer extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.surface,
         child: Column(
           children: [
-            // Profile image as button
             DrawerHeader(
-              padding: EdgeInsets.all(10), // Reduced padding
-              child: SizedBox(
-                height: 100,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, "/profile_page");
-                  },
-                  child: Column(
-                    children: [
-                      Icon(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, "/profile_page");
+                },
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Icon(
                         Icons.person_outline,
-                        size: 60,
+                        size: 40,
                         color: Theme.of(context).colorScheme.onSurface,
                       ),
-                      const SizedBox(width: 10),
-                      // Profile text
-                      const Text(
-                        "View Profile",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
+                    ),
+
+                    const SizedBox(width: 10),
+
+                    // Profile text
+                    const Text(
+                      "View Profile",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
