@@ -9,16 +9,35 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
         backgroundColor: Theme.of(context).colorScheme.surface,
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // drawer header: logo
-
+            // Profile image as button
             DrawerHeader(
-              child: Center(
-                child: Icon(
-                  Icons.shopping_bag,
-                  size: 72,
-                  color: Theme.of(context).colorScheme.inversePrimary,
+              padding: EdgeInsets.all(10), // Reduced padding
+              child: SizedBox(
+                height: 100,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/profile_page");
+                  },
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.person_outline,
+                        size: 60,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                      const SizedBox(width: 10),
+                      // Profile text
+                      const Text(
+                        "View Profile",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

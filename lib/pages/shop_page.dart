@@ -15,7 +15,7 @@ class ShopPage extends StatelessWidget {
     // access products in shop
 
     final products = context.watch<Shop>().shop;
-    final selectedCategory = context.watch<CategoryProvider>().selectedCategory;
+    final selectedCategory = context.watch<Category>().selectedCategory;
     final filteredProducts = selectedCategory == "All"
         ? products
         : products

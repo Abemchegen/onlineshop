@@ -8,7 +8,7 @@ class CategorySlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedCategory = context.watch<CategoryProvider>().selectedCategory;
+    final selectedCategory = context.watch<Category>().selectedCategory;
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -17,25 +17,22 @@ class CategorySlider extends StatelessWidget {
           MyCategoryTile(
             category: "All",
             isSelected: selectedCategory == "All",
-            onTap: () => context.read<CategoryProvider>().selectCategory("All"),
+            onTap: () => context.read<Category>().selectCategory("All"),
           ),
           MyCategoryTile(
             category: "Shoes",
             isSelected: selectedCategory == "Shoes",
-            onTap: () =>
-                context.read<CategoryProvider>().selectCategory("Shoes"),
+            onTap: () => context.read<Category>().selectCategory("Shoes"),
           ),
           MyCategoryTile(
             category: "Clothes",
             isSelected: selectedCategory == "Clothes",
-            onTap: () =>
-                context.read<CategoryProvider>().selectCategory("Clothes"),
+            onTap: () => context.read<Category>().selectCategory("Clothes"),
           ),
           MyCategoryTile(
             category: "Electronics",
             isSelected: selectedCategory == "Electronics",
-            onTap: () =>
-                context.read<CategoryProvider>().selectCategory("Electronics"),
+            onTap: () => context.read<Category>().selectCategory("Electronics"),
           ),
         ],
       ),
