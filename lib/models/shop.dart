@@ -1,46 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:onlineshop/models/product.dart';
+import 'package:onlineshop/services/api_service.dart';
 
 class Shop extends ChangeNotifier {
-  // products
-  final List<Product> _shop = [
-    Product(
-      name: "product 1",
-      price: 99.9,
-      description: "Item description..",
-      imagePath: "",
-      category: "Shoes",
-    ),
-    Product(
-      name: "product 2",
-      price: 79.9,
-      description: "Item description..",
-      imagePath: "",
-      category: "Clothes",
-    ),
-    Product(
-      name: "product 3",
-      price: 99.9,
-      description: "Item description..",
-      imagePath: "Electronics",
-      category: "Clothes",
-    ),
-    Product(
-      name: "product 4",
-      price: 29.9,
-      description: "Item description..",
-      imagePath: "",
-      category: "Electronics",
-    ),
-  ];
-  // user cart
+  final List<Product> _shop = [];
   final List<Product> _cart = [];
+  final ApiService api = ApiService();
 
   // get products
   List<Product> get shop => _shop;
 
   // get cart
   List<Product> get cart => _cart;
+
+  // fetch products
+  Future<void> loadProducts() async {
+    try {
+      final productsData = await api.fetchProducts();
+      _shop.clear();
+      _shop.addAll(productsData.map((data) => Product(
+          name: data['name'],
+          price: data["price"],
+          description: data['discription'],
+          imagePath: data['image_path'],
+          category: data['category'])));
+      notifyListeners();
+    } catch (e) {
+      throw Exception('Failed to load products: $e');
+    }
+  }
 
   // add item to cart
   void addToCart(Product item) {
