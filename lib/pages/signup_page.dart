@@ -43,13 +43,10 @@ class SignUpPage extends StatelessWidget {
           password: password,
         );
 
-        // Debug: print the response to understand its structure
-        print("Response: $response");
-
         if (response["status"] != null &&
             response['status'] == 'Account created successfully') {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/shop_page');
+          Navigator.pushNamed(context, '/signup_page');
           print("here");
         } else {
           ScaffoldMessenger.of(context).showSnackBar(

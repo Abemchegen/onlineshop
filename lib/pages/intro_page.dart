@@ -33,9 +33,7 @@ class IntroPage extends StatelessWidget {
           // Save token locally
           SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString('auth_token', token);
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Sign-Up Successful!")),
-          );
+
           Navigator.pushNamed(
               context, '/shop_page'); // Navigate to the shop page
         } else {
@@ -120,7 +118,8 @@ class IntroPage extends StatelessWidget {
                   onPressed: () => Navigator.pushNamed(context, '/signup_page'),
                   child: const Text(
                     "Sign Up",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54),
+
                   ),
                 ),
               ],
