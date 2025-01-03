@@ -96,7 +96,7 @@ class MyProductTile extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("\$${product.price.toStringAsFixed(2)}"),
+                  Text("\$${product.price}" ),
                   Container(
                       decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.secondary,
